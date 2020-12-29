@@ -1,0 +1,25 @@
+<form method="POST" action="/new">
+  <div class="form-group">
+    <label for="recipeName">Recipe Name</label>
+    <input type="text" name="recipeName" class="form-control" id="recipeName" placeholder="Type the recipe name">
+  </div>
+  <div class="form-group">
+    <label for="recipeDescription">Description</label>
+    <textarea type="text" name="recipeDescription" class="form-control" id="recipeDescription" placeholder="Write a short description" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="recipeRating">Rating: how many stars?</label>
+    <select class="form-control" name="recipeRating" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="recipePrepTime">Preparation Time (minutes):</label>
+    <input type="text" name="recipePrepTime" class="form-control" id="prepTime" placeholder="10" >
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

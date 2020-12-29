@@ -1,0 +1,11 @@
+<% recipes = @cookbook.all %>
+
+<ul>
+  <% recipes.each do |recipe| %>
+    <li>
+     [<%= recipe.done ? 'X' : ' ' %>] <strong><%= recipe.name %></strong> (<%= recipe.rating %> / 5) <strong>Prep. time:</strong> <%= recipe.prep_time %>
+    </li>
+  <% end %>
+</ul>
+
+<a href='http://localhost:4567/new' class="btn btn-primary" id="new">Create a new recipe!</a>
