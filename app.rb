@@ -11,6 +11,8 @@ configure :development do
   BetterErrors.application_root = File.expand_path(__dir__)
 end
 
+cookbook = Cookbook.new('recipes.csv')
+
 get '/' do
   @cookbook = Cookbook.new('recipes.csv')
   erb :index
@@ -22,16 +24,20 @@ end
 
 post '/new' do
   new_recipe = Recipe.new(params[:recipeName], params[:recipeDescription], params[:recipeRating], params[:recipePrepTime])
-  @cookbook = Cookbook.new('recipes.csv')
-  @cookbook.add_recipe(new_recipe)
+  cookbook.add_recipe(new_recipe)
   redirect to('/')
 end
 
-get '/about' do
-  erb :about
+get '/delete/:index' do
+  params[:index]
+  # @cookbook = Cookbook.new('recipes.csv')
+  cookbook.remove_recipe(params[:index].to_i)
+  redirect to('/')
 end
 
-get '/team/:username' do
-  puts params[:username]
-  "The username is #{params[:username]}"
+get '/done/:index' do
+  params[:index]
+  # @cookbook = Cookbook.new('recipes.csv')
+  cookbook.mark_recipe_done(params[:index].to_i)
+  redirect to('/')
 end

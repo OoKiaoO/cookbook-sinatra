@@ -1,11 +1,24 @@
 <% recipes = @cookbook.all %>
 
 <ul>
-  <% recipes.each do |recipe| %>
+  <% recipes.each_with_index do |recipe, index| %>
     <li>
-     [<%= recipe.done ? 'X' : ' ' %>] <strong><%= recipe.name %></strong> (<%= recipe.rating %> / 5) <strong>Prep. time:</strong> <%= recipe.prep_time %>
+     <a href="http://localhost:4567/done/<%= index %>">[<%= recipe.done ? 'X' : ' ' %>]</a>
+     <strong><%= recipe.name %></strong> 
+     (<%= recipe.rating %> / 5) 
+     Prep. time: <%= recipe.prep_time %> minutes
+     <a href="http://localhost:4567/delete/<%= index %>"> - Delete recipe - </a>
     </li>
   <% end %>
 </ul>
 
 <a href='http://localhost:4567/new' class="btn btn-primary" id="new">Create a new recipe!</a>
+
+<form method="POST" action="/results">
+  <div class="form-group">
+    <label for="keyword">Get inspired!</label>
+    <input type="text" name="keyword" class="form-control" id="keyword" placeholder="Lemon tart">
+    <small class="form-text text-muted">Type a keyword for your search.</small>
+  </div>
+  <button type="submit" class="btn btn-warning">Search</button>
+</form>
